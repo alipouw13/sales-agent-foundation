@@ -1,0 +1,37 @@
+# Your filled-in profile and any local source mapping. Never commit these.
+config/profile.md
+config/data-sources.md
+config/*.local.md
+
+# Generated artifacts. Anything an agent produces from your book blends real
+# customer data with your own numbers. It stays local, always.
+artifacts/
+out/
+output/
+*.local.*
+*.eml
+
+# Copilot / agent runtime state and audit logs (may contain customer data)
+.copilot/
+
+# Secrets
+.env
+.env.local
+*.token.json
+*.pem
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node tooling some skills pull in ad hoc
+node_modules/
+package-lock.json
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
