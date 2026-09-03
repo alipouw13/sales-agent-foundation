@@ -21,9 +21,11 @@ What I expect you to do:
    at a broad industry label.
 3. Gather what the account has said publicly, with URL, publication date, and a
    verbatim excerpt for every claim.
-4. Find at least two credible public peer datapoints in the same sub-vertical,
+4. Meet the `industry-context` peer evidence threshold: at least three
+   independent peer datapoints across at least two different qualifying peers,
    each with URL, date, excerpt, and a note explaining why the peer is
-   comparable.
+   comparable. If the threshold is not met, tell me the case is not yet
+   supportable rather than stretching it.
 5. Label source type, including vendor-published material when present. Do not
    count labelled vendor-published material as neutral peer evidence.
 6. Map pressure to `opportunity-signal-taxonomy` and to my solution catalog only

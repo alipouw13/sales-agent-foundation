@@ -37,9 +37,10 @@ parts of the runner's solution catalog are plausibly relevant.
 4. **Current operating pressures.** Identify the real pressures facing that
    sub-vertical now, such as cost pressure, margin pressure, regulation,
    capacity, risk, customer churn, modernization, resilience, or growth.
-5. **Public peer evidence.** Find at least two named public peer companies in the
-   same sub-vertical, each with URL, date, and verbatim excerpt. If fewer than
-   two credible peers exist, say the thesis is not supportable yet.
+5. **Public peer evidence.** Meet the `industry-context` threshold: at least
+   three independent peer datapoints drawn from at least two different
+   qualifying peer organizations, each with URL, date, and verbatim excerpt. If
+   the threshold is not met, say the thesis is not supportable yet.
 6. **Account statements.** Capture what the account itself has said publicly,
    including filings, investor materials, transcripts, press releases, or company
    pages. Keep account claims separate from peer claims.
@@ -63,8 +64,10 @@ parts of the runner's solution catalog are plausibly relevant.
 4. **Gather account evidence first.** Pull public statements from the account
    itself. Give each claim a URL, publication date, and verbatim excerpt. Do not
    paraphrase first and cite later.
-5. **Gather peer evidence.** Find at least two public peer datapoints in the same
-   sub-vertical. Each datapoint must name the peer, show why it is a peer, and
+5. **Gather peer evidence.** Meet the `industry-context` threshold: at least
+   three independent peer datapoints spanning at least two different qualifying
+   peer organizations, with at least two datapoints from peer public disclosure
+   or stronger. Each datapoint must name the peer, show why it is a peer, and
    include URL, date, and verbatim excerpt.
 6. **Reject weak peers.** Do not count a company as a peer just because it is
    famous or in the broad industry. If the business model, customer set, or

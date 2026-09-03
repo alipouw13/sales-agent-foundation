@@ -103,6 +103,10 @@ fabricated target.
 - A QA report covering broken links, empty tabs, missing source labels, bad
   denominators, evidence-free whitespace, and unknown targets.
 - A prioritized next-action list grounded in the dashboard evidence.
+- **Gaps.** The sources that were unavailable, the accounts whose data could not
+  be resolved, the targets left blank, and which tabs are therefore incomplete.
+  A dashboard that looks complete while resting on missing inputs is worse than
+  one that shows its holes.
 
 ## Guardrails
 

@@ -245,7 +245,7 @@ Checks:
 | 9 | Every catalog skill reference exists on disk | error |
 | 10 | No em dash (U+2014) or en dash (U+2013) in any tracked text file | error |
 | 11 | Relative markdown links resolve to an existing path | error |
-| 12 | No email address outside a placeholder domain, no GUID or long hex string, no credential pattern (assignment, bearer, PEM, JWT, connection string, vendor token prefix) | error |
+| 12 | No email address outside a placeholder domain (including obfuscated forms), no GUID or long hex string, no credential pattern (assignment, bearer, PEM, JWT, connection string, vendor token prefix), including a credential split across a line break | error |
 | 13 | Every skill referenced by an agent or prompt exists | error |
 | 14 | `SPEC.md` section 6 and `AGENT-CATALOG.md` name the same agents | error |
 | 15 | Agent `description` is third person, not imperative and not first person outside quoted trigger phrases | error |
@@ -262,10 +262,22 @@ Notes on scope:
   example cannot satisfy the structural contract.
 - The validator does not exempt itself.
 
-What the validator **cannot** check, and therefore what review must catch: a
-customer name, a person's name, a phone number, or a real revenue figure written
-as ordinary prose. Check 12 catches structured identifiers, not natural
-language. That gap is why the `code-reviewer` agent reads every diff.
+What the validator **cannot** check, and therefore what review must catch:
+
+- A customer or person's name written as ordinary prose. No pattern
+  distinguishes a real account name from an illustrative one.
+- A phone number, a street address, or any other identifier that looks like
+  ordinary text.
+- A real revenue, quota, or attainment figure. A number is just a number.
+- A credential deliberately obfuscated beyond the patterns above, or split
+  across more than two lines.
+- Whether an agent's process actually contradicts its own guardrails.
+
+Check 12 catches structured identifiers, not natural language. That gap is the
+reason the `code-reviewer` agent reads every diff, and the reason
+`CONTRIBUTING.md` puts the burden for customer data on the contributor. Treat a
+green validator as "the structure is intact", never as "this is safe to
+publish".
 
 ## 10. Definition of done for a change
 

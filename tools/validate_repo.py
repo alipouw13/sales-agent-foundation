@@ -100,6 +100,14 @@ SECRET_PATTERNS = [
     re.compile(r"\b(gh[pousr]_[A-Za-z0-9]{20,}|xox[baprs]-[A-Za-z0-9-]{10,}|sk-[A-Za-z0-9]{20,})"),
 ]
 
+# Emails written to dodge a naive scan. Requires the spelled-out separators, so
+# ordinary dotted prose and code do not trip it.
+_AT = r"(?:\s*\(\s*at\s*\)\s*|\s*\[\s*at\s*\]\s*|\s+at\s+)"
+_DOT = r"(?:\s*\(\s*dot\s*\)\s*|\s*\[\s*dot\s*\]\s*|\s+dot\s+)"
+OBFUSCATED_EMAIL_RE = re.compile(
+    r"(?i)\b[A-Za-z0-9._%+-]+" + _AT + r"[A-Za-z0-9-]+" + _DOT + r"[A-Za-z]{2,}\b"
+)
+
 # [text](target). Also matches ![alt](target), which we check identically.
 MD_LINK_RE = re.compile(r"\[[^\]]*\]\(\s*(<[^>]+>|[^)\s]+)")
 
@@ -525,7 +533,8 @@ def check_dashes_and_secrets(report: Report) -> None:
             text = _read(path)
         except (UnicodeDecodeError, OSError):
             continue
-        for number, line in enumerate(text.splitlines(), start=1):
+        lines = text.splitlines()
+        for number, line in enumerate(lines, start=1):
             if EM_DASH in line:
                 report.error("dashes", path, "contains an em dash (U+2014)", number)
             if EN_DASH in line:
@@ -537,6 +546,14 @@ def check_dashes_and_secrets(report: Report) -> None:
                 report.error(
                     "pii", path, f"contains an email address `{match.group(0)}`", number
                 )
+            if not EMAIL_RE.search(line) and OBFUSCATED_EMAIL_RE.search(line):
+                report.error(
+                    "pii",
+                    path,
+                    "contains an email address written to evade a scan, using spelled-out "
+                    "separators instead of the symbols",
+                    number,
+                )
             if GUID_RE.search(line):
                 report.error("pii", path, "contains a bare GUID, use a placeholder", number)
             if BARE_HEX_RE.search(line) and not ACTION_PIN_RE.match(line):
@@ -546,8 +563,13 @@ def check_dashes_and_secrets(report: Report) -> None:
                     "contains a long hex string (hyphenless GUID, hash, or key)",
                     number,
                 )
+            # Join with the next line so a credential split across a line break,
+            # or continued with a backslash, is still seen as one value.
+            window = line
+            if number < len(lines):
+                window = line.rstrip().rstrip("\\") + lines[number].strip()
             for pattern in SECRET_PATTERNS:
-                if pattern.search(line):
+                if pattern.search(line) or pattern.search(window):
                     report.error("secrets", path, "looks like a hardcoded credential", number)
                     break
 

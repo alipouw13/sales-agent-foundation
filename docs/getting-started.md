@@ -119,7 +119,7 @@ the handoffs listed in your role playbook are where the leverage is.
 | Output is generic and mentions no real accounts | Same as above, or your CRM tool cannot filter to your own records |
 | "No meeting or note history available" on every account | `workplace` or `notes` is unmapped, or mapped to the wrong tool name |
 | Whitespace suggestions do not match your products | `solution_catalog` in your profile does not use the same names as your CRM's product field |
-| Numbers look wrong | Check whether the agent labelled the source of each figure. If it did not, the agent file is broken. If it did, the mapping is |
+| Numbers look wrong | Check whether the agent labelled the source of each figure. If it did not, the agent file is broken. If it did, follow the label back: the field mapping in `crm-data-contract` is almost certainly pointing at the wrong CRM field |
 | Drafts sound nothing like you | `voice.derive_from` is `workplace` but the mail source cannot read your **sent** mail. Switch to `manual` and fill the voice block |
 | The agent invented something | Stop using it and open an issue. That is a defect in the agent definition, not a prompt problem |
 
