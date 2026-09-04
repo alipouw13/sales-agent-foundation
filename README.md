@@ -77,7 +77,7 @@ Six layers. The two in the middle are what make the whole thing work.
 
 ```mermaid
 flowchart TB
-    H["<b>You</b>&nbsp;&nbsp;'prep me for the &lt;account&gt; meeting'<br/><i>you confirm every write, you send every email</i>"]:::human
+    H["<b>You</b>&nbsp;&nbsp;'prep me for tomorrow's account meeting'<br/><i>you confirm every write, you send every email</i>"]:::human
 
     P["<b>Prompts, the front door</b> (20)&nbsp;&nbsp;<code>.github/prompts/</code><br/><i>parameterized, they ask you for the inputs</i>"]:::plain
 
